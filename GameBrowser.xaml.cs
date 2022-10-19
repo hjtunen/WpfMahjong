@@ -55,7 +55,9 @@ namespace WpfMahjong
 
         private async void refreshChat_Click(object sender, RoutedEventArgs e)
         {
-            await GetChatData();
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
+            var data = await GetChatData();
+            icChat.ItemsSource = data;
         }
     }
 }
